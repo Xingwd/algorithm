@@ -1,5 +1,5 @@
 '''
-冒泡排序
+1、冒泡排序
 对序列进行遍历，遍历过程中如果发现相邻两个元素，满足比较条件，则进行交换，
 一次遍历之后最大的元素被移动到对尾，然后进行第二次遍历，直到队列有序。
 时间复杂度：O(n*n)
@@ -32,7 +32,7 @@ def bubble_sort(list):
 
 
 '''
-选择排序
+2、选择排序
 先找到起始数组中最小的元素，将它交换到i=0；
 然后寻找剩下元素中最小的元素，将它交换到i=1的位置…… 
 直到找到第二大的元素，将它交换到n-2的位置。
@@ -56,7 +56,7 @@ def selection_sort(list):
 
 
 '''
-快速排序
+3、快速排序
 任意设置一个基准元素，一般是第一个或者最后一个，
 将序列以该基准元素为基准，分割成比他小的一部分和比他大的一部分，
 此时，该基准元素所在的位置就是排序终了之后的准确位置，
@@ -70,12 +70,12 @@ def quick_sort(list):
     else:
         first = list[0]
         left_list = [i for i in list[1:] if i < first]
-        right_list = [i for i in list[1:] if i > first]
+        right_list = [i for i in list[1:] if i >= first]
         return quick_sort(left_list) + [first] + quick_sort(right_list)
 
 
 '''
-插入排序 
+4、插入排序 
 将序列的第一个元素当做已经排序好的序列，然后从后面的第二个元素开始，逐个元素进行插入，直到整个序列有序为止。
 时间复杂度：O(n*n)
 空间复杂度：O(1)
@@ -94,7 +94,7 @@ def insert_sort(list):
 
 
 '''
-堆排序 
+5、堆排序 
 它是选择排序的一种。
 可以利用数组的特点快速定位指定索引的元素。
 堆分为大根堆和小根堆，是完全二叉树。
@@ -125,5 +125,43 @@ def heap_sort(list):
 
     return list
 
+
+'''
+6、归并排序
+对数组进行拆分再拆分，直到不能再拆分，然后分别对最小粒度的子数组进行合并，
+然后再合并稍微大一点的数组，直到最终合成一个最大的数组。
+分两个函数完成，一个负责拆分，一个负责排序合并。
+'''
+# 排序合并
+def merge(ll, rl):
+    new_l = []
+    # 直到至少一个列表为空时，才退出循环
+    while len(ll) and len(rl):
+        if ll[0] <= rl[0]:
+            new_l.append(ll.pop(0))
+        else:
+            new_l.append(rl.pop(0))
+
+    # 将不为空的列表追加到结果列表后面
+    if len(ll) > 0:
+        new_l += ll
+    else:
+        new_l += rl
+
+    return new_l
+# 拆分
+def merge_sort(list):
+    # 最小粒度为1时，直接返回
+    if len(list) == 1:
+        return list
+    # 从中间拆分
+    mid = len(list)//2
+    left = list[:mid]
+    right = list[mid:]
+    # 递归拆分，直到粒度为1
+    ll = merge_sort(left)
+    rl = merge_sort(right)
+
+    return merge(ll, rl)
 
 
