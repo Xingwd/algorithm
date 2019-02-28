@@ -6,8 +6,9 @@
 空间复杂度：O(1)
 '''
 def bubble_sort(list):
-    # 获取list长度，用来指示循环多少轮
     length = len(list)
+    if length < 2:
+        return list
 
     # 循环 length-1 轮
     # range函数的范围包括0，不包括length，也就是说i的最大值是length-1-1
@@ -41,8 +42,9 @@ def bubble_sort(list):
 空间复杂度：O(1)
 '''
 def selection_sort(list):
-    # 获取list长度
     length = len(list)
+    if length < 2:
+        return list
 
     # 选择length-1轮
     for i in range(0, length-1):
@@ -65,8 +67,9 @@ def selection_sort(list):
 空间复杂度：O(n*logn)
 '''
 def quick_sort(list):
-    if list == []:
-        return []
+    length = len(list)
+    if length < 2:
+        return list
     else:
         first = list[0]
         left_list = [i for i in list[1:] if i < first]
@@ -82,6 +85,8 @@ def quick_sort(list):
 '''
 def insert_sort(list):
     length = len(list)
+    if length < 2:
+        return list
     for i in range(1, length):
         j = i
         while j > 0:
@@ -106,8 +111,11 @@ def insert_sort(list):
 4）如此循环，直到排序完成。
 '''
 def heap_sort(list):
+    length = len(list)
+    if length < 2 :
+        return list
     # 从最大长度依次递减循环，每次循环构建一个大根堆
-    for i in range(len(list), 0, -1):
+    for i in range(length, 0, -1):
         # 从最后一个父节点向根节点遍历
         for p in range((i//2)-1, -1, -1):
             child = 2 * p + 1
@@ -151,11 +159,11 @@ def merge(ll, rl):
     return new_l
 # 拆分
 def merge_sort(list):
-    # 最小粒度为1时，直接返回
-    if len(list) == 1:
+    length = len(list)
+    if length < 2 :
         return list
     # 从中间拆分
-    mid = len(list)//2
+    mid = length//2
     left = list[:mid]
     right = list[mid:]
     # 递归拆分，直到粒度为1
