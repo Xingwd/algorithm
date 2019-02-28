@@ -64,6 +64,15 @@ def exec_merge_sort(list):
     print("new_l：{0}".format(new_l))
 
 
+# 希尔排序
+from sort.some_sort import shell_sort
+@time_count
+def exec_shell_sort(list):
+    new_l = shell_sort(list)
+    print("希尔排序：")
+    print("new_l：{0}".format(new_l))
+
+
 def main():
     # 当数据量比较大的时候，设置最大递归深度，否则使用递归的算法会报错，比如快速排序
     # 获取最大递归深度：sys.getrecursionlimit()
@@ -75,7 +84,7 @@ def main():
     # import random
     # l = random.sample(range(1, 21), 10)
     # 生成可重复测试数据，数据范围是0～20，数据量为10
-    l = list(np.random.randint(21, size=20))
+    l = list(np.random.randint(21, size=10))
     print("随机列表l：{0}".format(l))
     print("===============================================")
     # 执行排序
@@ -85,6 +94,7 @@ def main():
     exec_insert_sort(l)
     exec_heap_sort(l)
     exec_merge_sort(l)
+    exec_shell_sort(l)
 
 
 if __name__ == '__main__':

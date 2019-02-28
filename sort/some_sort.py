@@ -165,3 +165,24 @@ def merge_sort(list):
     return merge(ll, rl)
 
 
+'''
+7、希尔排序
+将数组按照增量分组进行排序，增量值从 len(list)//2 到 1
+举例说明，假定有一个长度为10的数组l，进行希尔排序。
+第一轮：增量为5，将l[0]与l[5]，l[1]与l[6]，...，l[4]与l[9]进行分组，每组分别进行排序；
+第二轮：增量为4，将l[0]与l[4]与l[8]，l[1]与l[5]与l[9]，...，l[3]与l[7]进行分组，每组分别进行排序；
+...
+直到增量为1，这时只分为一组，也就是整个数组，排序完成。
+'''
+def shell_sort(list):
+    length = len(list)
+    if length < 2 :
+        return list
+
+    gap = length//2
+    for i in range(gap, length):
+        for j in range(i%gap, i, gap):
+            if list[i] < list[j]:
+                list[i], list[j] = list[j], list[i]
+
+    return list
