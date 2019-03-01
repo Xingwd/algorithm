@@ -9,7 +9,7 @@ def bubble_sort(list):
         return list
 
     # 循环 length-1 轮
-    # range函数的范围包括0，不包括length，也就是说i的最大值是length-1-1
+    # range函数的范围包括0，不包括length-1，也就是说i的最大值是length-1-1
     # 循环轮数就是 0 到 length-2
     for i in range(0, length-1):
         # 设置标记，用来标记在本轮比较中是否进行了交换
